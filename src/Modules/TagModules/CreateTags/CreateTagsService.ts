@@ -66,7 +66,6 @@ export class CreateTagsService {
           `${CREATE_TAGS_LIST} - etiquetas não foram criadas - ${new Date()}`
         );
       }
-      fs.unlinkSync(filePath)
       rabbitMq.subChannel.ack(msg);
     });
   }
