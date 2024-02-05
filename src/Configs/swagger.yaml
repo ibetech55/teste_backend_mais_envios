@@ -1,0 +1,200 @@
+openapi: 3.0.0
+components:
+info:
+  title: Mais Envios Teste API
+  version: 1.0.0
+  description: Documentação de API
+servers:
+  - url: http://localhost:5000
+    description: Development server
+paths:
+  "/api/tag":
+    get:
+      summary: Obtenha uma lista de todas as etiquetas
+      tags:
+        - Etiquetas
+      responses:
+        "200":
+          description: Resposta de sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    tag:
+                      type: string
+                    status:
+                      type: number
+                    price:
+                      type: number
+                    source:
+                      type: string
+    post:
+      summary: Criar etiquetas
+      tags: 
+        - 'Etiquetas'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                tagList:
+                  type: string
+                  format: binary                 
+      responses:
+        "201":
+          description: Success
+        "401":
+          description: Etiquetas ja existe 
+  "/api/tag/{id}":
+    get:
+      summary: Busca etiqueta por ID
+      tags:
+        - Etiquetas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID da etiqueta
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Resposta de sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  tag:
+                    type: string
+                  status:
+                    type: number
+                  price:
+                    type: number
+                  source:
+                    type: string
+    delete:
+      summary: Deletar etiqueta por ID
+      tags:
+        - Etiquetas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do etiqueta
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Resposta de sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  tag:
+                    type: string
+                  status:
+                    type: number
+                  price:
+                    type: number
+                  source:
+                    type: string
+    put:
+      summary: Atualizar etiqueta
+      tags:
+        - Etiquetas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID da etiqueta
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                name:
+                  type: string
+                tag:
+                  type: string
+                status:
+                  type: number
+                price:
+                  type: number
+                source:
+                  type: string
+      responses:
+        "200":
+          description: Resposta de sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  tag:
+                    type: string
+                  status:
+                    type: number
+                  price:
+                    type: number
+                  source:
+                    type: string
+        "400":
+          description: Bad request
+  "/api/tag/getByTag/{tag}":
+    get:
+      summary: Busca etiqueta por etiqueta
+      tags:
+        - Etiquetas
+      parameters:
+        - name: tag
+          in: path
+          required: true
+          description: Codigo do etiqueta
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Resposta de sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  tag:
+                    type: string
+                  status:
+                    type: number
+                  price:
+                    type: number
+                  source:
+                    type: string
+  

@@ -1,0 +1,1 @@
+export const CREATE_TAGS_LIST = 'create-tags-list-job'
